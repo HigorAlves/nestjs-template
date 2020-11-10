@@ -30,4 +30,10 @@ export class UserEntity extends BaseModel<UserEntity> implements IUser {
 
   @Column({ name: 'role' })
   role: 'admin' | 'client';
+
+  @Column({ name: 'balance', default: 0 })
+  balance: number;
+
+  @Column({ name: 'affiliated' })
+  affiliated: { from: string; valueToRescue: number };
 }
