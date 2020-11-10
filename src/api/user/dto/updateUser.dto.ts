@@ -6,7 +6,7 @@ import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
   For other interfaces use ./src/interfaces/yourapp.interface.ts
 */
 
-export class UpdateUserDto implements IUser {
+export class UpdateUserDto implements Omit<IUser, 'role'> {
   @IsNotEmpty()
   @IsString()
   email: string;

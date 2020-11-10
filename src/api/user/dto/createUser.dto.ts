@@ -36,4 +36,8 @@ export class CreateUserDto implements IUser {
 
   @IsNotEmpty()
   locale: { currency: 'BRL' | 'USD'; language: 'Portuguese' | 'English' };
+
+  @IsNotEmpty()
+  @IsString()
+  role: 'client' | 'admin';
 }

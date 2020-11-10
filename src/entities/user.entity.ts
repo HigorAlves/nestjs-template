@@ -27,4 +27,7 @@ export class UserEntity extends BaseModel<UserEntity> implements IUser {
 
   @Column({ name: 'locale' })
   locale: { currency: 'BRL' | 'USD'; language: 'Portuguese' | 'English' };
+
+  @Column({ name: 'role' })
+  role: 'admin' | 'client';
 }

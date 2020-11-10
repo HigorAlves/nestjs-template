@@ -10,13 +10,14 @@ import {
 } from 'typeorm';
 import { DeleteWriteOpResultObject } from 'typeorm/driver/mongodb/typings';
 import { ObjectID } from 'mongodb';
+import { IUser } from '@/interfaces/user.interface';
 
 @EntityRepository(UserEntity)
 export class UserRepository extends Repository<UserEntity> {
   private logger = new Logger('USER_REPOSITORY');
 
   async createUser(createUserDTO: CreateUserDto): Promise<UserEntity> {
-    const data = { ...createUserDTO, id: null };
+    const data: IUser = { ...createUserDTO, role: 'client' };
     const user = new UserEntity(data);
 
     try {
@@ -41,9 +42,9 @@ export class UserRepository extends Repository<UserEntity> {
     return true;
   }
 
-  async get(id: string): Promise<UserEntity> {
+  async get(email: string): Promise<UserEntity> {
     const manager = getMongoRepository(UserEntity);
-    return await manager.findOne({ where: { _id: new ObjectID(id) } });
+    return await manager.findOne({ where: { email } });
   }
 
   async checkEmailAlreadyInUse(email: string) {

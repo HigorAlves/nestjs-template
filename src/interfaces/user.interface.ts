@@ -14,4 +14,5 @@ export interface IUser {
     currency: 'BRL' | 'USD';
     language: 'Portuguese' | 'English';
   };
+  role: 'admin' | 'client';
 }
