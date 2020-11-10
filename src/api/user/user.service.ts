@@ -4,7 +4,7 @@ import { UserRepository } from '@/api/user/user.repository';
 import { UserEntity } from '@/entities/user.entity';
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ResponseType } from '@/interfaces/response.interface';
+import { ResponseType } from '@/types/response';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()

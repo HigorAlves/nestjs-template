@@ -1,4 +1,4 @@
-export interface IUser {
+export type IUser = {
   id?: string;
   firstName: string;
   lastName: string;
@@ -15,4 +15,4 @@ export interface IUser {
     language: 'Portuguese' | 'English';
   };
   role: 'admin' | 'client';
-}
+};

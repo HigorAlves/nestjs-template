@@ -1,6 +1,7 @@
 import { CreateUserDto } from '@/api/user/dto/createUser.dto';
 import { UpdateUserDto } from '@/api/user/dto/updateUser.dto';
 import { UserService } from '@/api/user/user.service';
+import { jwtPayload } from '@/types/jwtPayload';
 import {
   Body,
   Controller,
@@ -11,6 +12,7 @@ import {
   Res,
   Put,
   UseGuards,
+  Request,
 } from '@nestjs/common';
 import { Response } from 'express';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
@@ -39,9 +41,18 @@ export class UserController {
   }
 
   @Delete()
-  async delete(@Body('id') id: string, @Res() response: Response) {
-    const result = await this.userService.delete(id);
-    return response.status(201).send({ success: result });
+  async delete(
+    @Body('id') id: string,
+    @Res() response: Response,
+    @Request() req,
+  ) {
+    const payload: jwtPayload = req.user as jwtPayload;
+    if (payload.role === 'admin') {
+      const result = await this.userService.delete(id);
+      return response.status(201).send({ success: result });
+    } else {
+      return response.status(401);
+    }
   }
 
   @Put()

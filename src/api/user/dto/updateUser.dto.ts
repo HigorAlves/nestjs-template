@@ -1,4 +1,4 @@
-import { IUser } from '@/interfaces/user.interface';
+import { IUser } from '@/types/user';
 import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
 
 /*

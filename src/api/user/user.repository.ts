@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 import { DeleteWriteOpResultObject } from 'typeorm/driver/mongodb/typings';
 import { ObjectID } from 'mongodb';
-import { IUser } from '@/interfaces/user.interface';
+import { IUser } from '@/types/user';
 
 @EntityRepository(UserEntity)
 export class UserRepository extends Repository<UserEntity> {

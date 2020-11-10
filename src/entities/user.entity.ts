@@ -1,4 +1,4 @@
-import { IUser } from '@/interfaces/user.interface';
+import { IUser } from '@/types/user';
 import { Entity, Column } from 'typeorm';
 import { BaseModel } from './models/base.model';
 
