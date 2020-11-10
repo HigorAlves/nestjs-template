@@ -10,9 +10,12 @@ import {
   Post,
   Res,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { Response } from 'express';
+import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 
+@UseGuards(JwtAuthGuard)
 @Controller('user')
 export class UserController {
   private logger: Logger = new Logger('USER_CONTROLLER');
