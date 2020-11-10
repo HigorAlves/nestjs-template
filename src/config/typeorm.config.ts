@@ -1,7 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import * as Dotenv from 'dotenv';
-
-const dotenv = Dotenv.config().parsed;
+import { TYPEORM } from '@/constants/constants';
 
 export const typeormConfig: TypeOrmModuleOptions = {
   type: 'mongodb',
@@ -9,9 +7,9 @@ export const typeormConfig: TypeOrmModuleOptions = {
   useNewUrlParser: true,
   ssl: true,
   useUnifiedTopology: true,
-  authSource: dotenv.TYPEORM_AUTHSOURCE,
-  url: dotenv.TYPEORM_DATABASE_URL,
-  database: dotenv.TYPEORM_DATABASE,
-  synchronize: Boolean(dotenv.TYPEORM_SYNCRONIZE),
-  logging: Boolean(dotenv.TYPEORM_LOGGING),
+  authSource: TYPEORM.authSource,
+  url: TYPEORM.url,
+  database: TYPEORM.database,
+  synchronize: TYPEORM.synchronize,
+  logging: TYPEORM.logging,
 };

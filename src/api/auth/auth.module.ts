@@ -6,16 +6,14 @@ import { AuthService } from './auth.service';
 import { LocalStrategy } from './strategys/local.strategy';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from './strategys/jwt.strategy';
-import * as Dotenv from 'dotenv';
-
-const dotenv = Dotenv.config().parsed;
+import { JWT } from '@/constants/constants';
 
 @Module({
   imports: [
     UserModule,
     PassportModule,
     JwtModule.register({
-      secret: dotenv.JWT_SECRET,
+      secret: JWT.secret,
       signOptions: { expiresIn: '28000s' },
     }),
   ],
