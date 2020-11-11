@@ -1,5 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { TYPEORM } from '@/constants/constants';
+import { TYPEORM } from '@/constants';
 
 export const typeormConfig: TypeOrmModuleOptions = {
   type: 'mongodb',

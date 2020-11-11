@@ -3,6 +3,7 @@ import { UserService } from '@/api/user/user.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { UserEntity } from '@/entities/user.entity';
+import { CreateUserDto } from '../user/dto/createUser.dto';
 
 @Injectable()
 export class AuthService {
@@ -36,5 +37,9 @@ export class AuthService {
     }
 
     return { error: 'Password or Email invalid' };
+  }
+
+  async register(user: CreateUserDto) {
+    return;
   }
 }

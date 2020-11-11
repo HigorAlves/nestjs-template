@@ -11,4 +11,9 @@ export const TYPEORM = {
 
 export const JWT = {
   secret: process.env.JWT_SECRET,
+  duration: 60 * 60 * 8,
+};
+
+export const SENTRY = {
+  dsn: process.env.SENTRY_DSN,
 };
