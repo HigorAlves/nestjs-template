@@ -4,25 +4,25 @@ import {
   CreateDateColumn,
   Entity,
   ObjectIdColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+  UpdateDateColumn
+} from 'typeorm'
 
 @Entity()
 export class BaseModel<T> extends BaseEntity {
   constructor(entity?: Partial<T>) {
-    super();
-    Object.assign(this, entity || {});
+    super()
+    Object.assign(this, entity || {})
   }
 
   @ObjectIdColumn({ name: '_id' })
-  id: string;
+  id: string
 
   @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date;
+  createdAt: Date
 
   @UpdateDateColumn({ name: 'updated_at' })
-  updatedAt: Date;
+  updatedAt: Date
 
   @Column('boolean', { name: 'inactive', default: false })
-  inactive: boolean;
+  inactive: boolean
 }

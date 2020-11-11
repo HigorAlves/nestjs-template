@@ -1,5 +1,6 @@
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { TYPEORM } from '@/constants';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm'
+
+import { TYPEORM } from '~/constants'
 
 export const typeormConfig: TypeOrmModuleOptions = {
   type: 'mongodb',
@@ -11,5 +12,5 @@ export const typeormConfig: TypeOrmModuleOptions = {
   url: TYPEORM.url,
   database: TYPEORM.database,
   synchronize: TYPEORM.synchronize,
-  logging: TYPEORM.logging,
-};
+  logging: TYPEORM.logging
+}

@@ -1,22 +1,20 @@
-import { typeormConfig } from '@/config/typeorm.config';
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule } from '@nestjs/config';
+import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+import { TypeOrmModule } from '@nestjs/typeorm'
 
-import { UserModule } from 'src/api/user/user.module';
-import { AuthModule } from './auth/auth.module';
-import { ServiceModule } from './services/service.module';
+import { AuthModule } from '~/api/auth/auth.module'
+import { UserModule } from '~/api/user/user.module'
+import { typeormConfig } from '~/config/typeorm.config'
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: '.development.env',
-      isGlobal: true,
+      isGlobal: true
     }),
     TypeOrmModule.forRoot(typeormConfig),
     AuthModule,
-    UserModule,
-    ServiceModule,
-  ],
+    UserModule
+  ]
 })
 export class AppModule {}

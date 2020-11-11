@@ -1,39 +1,40 @@
-import { IUser } from '@/types/user';
-import { Entity, Column } from 'typeorm';
-import { BaseModel } from './models/base.model';
+import { Entity, Column } from 'typeorm'
+
+import { BaseModel } from './models/base.model'
+import { IUser } from '~/types/user'
 
 @Entity('users')
 export class UserEntity extends BaseModel<UserEntity> implements IUser {
   @Column({ name: 'firstName' })
-  firstName: string;
+  firstName: string
 
   @Column({ name: 'lastName' })
-  lastName: string;
+  lastName: string
 
   @Column({ name: 'birthdate' })
-  birthdate: { day: number; month: number; year: number };
+  birthdate: { day: number; month: number; year: number }
 
   @Column({ name: 'email' })
-  email: string;
+  email: string
 
   @Column({ name: 'password' })
-  password: string;
+  password: string
 
   @Column({ name: 'gender' })
-  gender: boolean;
+  gender: boolean
 
   @Column({ name: 'image' })
-  image: string;
+  image: string
 
   @Column({ name: 'locale' })
-  locale: { currency: 'BRL' | 'USD'; language: 'Portuguese' | 'English' };
+  locale: { currency: 'BRL' | 'USD'; language: 'Portuguese' | 'English' }
 
   @Column({ name: 'role' })
-  role: 'admin' | 'client';
+  role: 'admin' | 'client'
 
   @Column({ name: 'balance', default: 0 })
-  balance: number;
+  balance: number
 
   @Column({ name: 'affiliated' })
-  affiliated: { from: string; valueToRescue: number };
+  affiliated: { from: string; valueToRescue: number }
 }

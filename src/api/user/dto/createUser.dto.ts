@@ -1,5 +1,6 @@
-import { IUser } from '@/types/user';
-import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsString } from 'class-validator'
+
+import { IUser } from '~/types/user'
 
 /*
   Please, use DTO only for incoming payload from controller, and make sure it have been correctly validated
@@ -9,35 +10,35 @@ import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
 export class CreateUserDto implements IUser {
   @IsNotEmpty()
   @IsString()
-  email: string;
+  email: string
 
   @IsNotEmpty()
   @IsString()
-  password: string;
+  password: string
 
   @IsNotEmpty()
-  birthdate: { day: number; month: number; year: number };
+  birthdate: { day: number; month: number; year: number }
 
   @IsNotEmpty()
   @IsString()
-  firstName: string;
+  firstName: string
 
   @IsNotEmpty()
   @IsBoolean()
-  gender: boolean;
+  gender: boolean
 
   @IsNotEmpty()
   @IsString()
-  image: string;
+  image: string
 
   @IsNotEmpty()
   @IsString()
-  lastName: string;
+  lastName: string
 
   @IsNotEmpty()
-  locale: { currency: 'BRL' | 'USD'; language: 'Portuguese' | 'English' };
+  locale: { currency: 'BRL' | 'USD'; language: 'Portuguese' | 'English' }
 
   @IsNotEmpty()
   @IsString()
-  role: 'client' | 'admin';
+  role: 'client' | 'admin'
 }

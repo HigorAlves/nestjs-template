@@ -1,8 +1,8 @@
 {
-	"env": {
-		"es2021": true,
-		"node": true,
-    "jest": true,
+  "env": {
+    "es2021": true,
+    "node": true,
+    "jest": true
   },
   "extends": [
     "plugin:import/errors",
@@ -10,7 +10,7 @@
     "plugin:import/typescript",
     "standard",
     "plugin:@typescript-eslint/recommended",
-		"prettier/@typescript-eslint",
+    "prettier/@typescript-eslint",
     "prettier/standard",
     "plugin:prettier/recommended"
   ],
@@ -20,21 +20,21 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": [
-    "@typescript-eslint",
-		"@typescript-eslint/eslint-plugin"
-  ],
+  "plugins": ["@typescript-eslint", "@typescript-eslint/eslint-plugin"],
   "root": true,
   "rules": {
-		"prettier/prettier": "error",
-  	"@typescript-eslint/interface-name-prefix": "off",
-  	"@typescript-eslint/explicit-function-return-type": "off",
+    "prettier/prettier": "error",
+    "import/no-unresolved": "off",
+    "no-useless-constructor": "off",
+    "eqeqeq": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
-		"@typescript-eslint/no-explicit-any": "off",
-		"import/order": [
+    "@typescript-eslint/no-explicit-any": "off",
+    "import/order": [
       "error",
       {
-        "groups": ["builtin", "external", "internal"],
+        "groups": ["internal", "external", "builtin"],
         "newlines-between": "always",
         "alphabetize": {
           "order": "asc",

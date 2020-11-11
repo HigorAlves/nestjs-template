@@ -1,19 +1,19 @@
-import * as Dotenv from 'dotenv';
-Dotenv.config();
+import * as Dotenv from 'dotenv'
+Dotenv.config()
 
 export const TYPEORM = {
   authSource: process.env.TYPEORM_AUTHSOURCE,
   url: process.env.TYPEORM_DATABASE_URL,
   database: process.env.TYPEORM_DATABASE,
   synchronize: Boolean(process.env.TYPEORM_SYNCRONIZE),
-  logging: Boolean(process.env.TYPEORM_LOGGING),
-};
+  logging: Boolean(process.env.TYPEORM_LOGGING)
+}
 
 export const JWT = {
   secret: process.env.JWT_SECRET,
-  duration: 60 * 60 * 8,
-};
+  duration: 60 * 60 * 8
+}
 
 export const SENTRY = {
-  dsn: process.env.SENTRY_DSN,
-};
+  dsn: process.env.SENTRY_DSN
+}
