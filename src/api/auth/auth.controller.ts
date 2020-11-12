@@ -10,12 +10,27 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('login')
-  async login(@Body() body) {
+  login(@Body() body) {
     return this.authService.login(body)
   }
 
   @Post('register')
-  async register(@Body() user: CreateUserDto) {
+  register(@Body() user: CreateUserDto) {
     return this.authService.register(user)
+  }
+
+  @Post('passwordrecovery')
+  passwordRecovery(@Body('email') email: string) {
+    console.log(email)
+  }
+
+  @Post('newpassword')
+  newPassword(@Body() password: string) {
+    console.log(password)
+  }
+
+  @Post('passwordupdate')
+  passwordUpdate(@Body() data: { oldPassword: string; newPassword: string }) {
+    console.log(data)
   }
 }
