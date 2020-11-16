@@ -2,6 +2,51 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.2 (2020-11-16)
+
+
+### :sparkles: Features
+
+* **auth:** fix auth erros ([c44455a](https://github.com/HigorAlves/dontspend-money/commit/c44455a9db106380c2b57f30b78dddac6761e9a1))
+* **auth:** jwt authenticate ([9694b35](https://github.com/HigorAlves/dontspend-money/commit/9694b35237e0ea3d08b1937cba5c3fd5a82b8555))
+* **user:** crud for user ([425dd22](https://github.com/HigorAlves/dontspend-money/commit/425dd226bf81cdca74055cb6f2ab79c336e1856d))
+
+
+### :rocket: Build System
+
+* **heroku:** config ([9a7938b](https://github.com/HigorAlves/dontspend-money/commit/9a7938bb633ee6ae78937f61dd667e937dbc6879))
+* **heroku:** new constants file ([a236b7c](https://github.com/HigorAlves/dontspend-money/commit/a236b7c3851aedefdea8f97f5b644eb6bc145fca))
+
+
+### :recycle: Code Refactoring
+
+* **types:** change interfaces to types ([a0d67e1](https://github.com/HigorAlves/dontspend-money/commit/a0d67e1ce85986f88dd078479b882d26ce11bfce))
+
+
+### CI
+
+* **upgrade:** new task builds ([6ba416b](https://github.com/HigorAlves/dontspend-money/commit/6ba416be7b50da9d99d63a837cb33129f4a541b8))
+
+
+### :triangular_flag_on_post: Others
+
+* **global:** new env vars ([bf55e9c](https://github.com/HigorAlves/dontspend-money/commit/bf55e9c733665b1758c79cbd501e3f2a68800020))
+* **release:** 0.1.0 ([49eac77](https://github.com/HigorAlves/dontspend-money/commit/49eac777021dab6944d507894ece1bbbdd3fa4e9))
+* **release:** 0.1.1 ([895eb64](https://github.com/HigorAlves/dontspend-money/commit/895eb649ada55b4d86b1e3aeb2a739b00d101a0d))
+* **sentry:** new error tool monitoring ([407922a](https://github.com/HigorAlves/dontspend-money/commit/407922aee165004f1b376a21acea50b6620de5e5))
+
+
+### :bug: Bug Fixes
+
+* **git:** remove env files ([700ffdb](https://github.com/HigorAlves/dontspend-money/commit/700ffdb50fe5e228a197ee3e48714d3182913ff8))
+* **heroku:** constants ([a9fff1a](https://github.com/HigorAlves/dontspend-money/commit/a9fff1a9ef0582f9d058411fd06a9ec820e55504))
+* **heroku:** constants ([5e09d8f](https://github.com/HigorAlves/dontspend-money/commit/5e09d8f964fd1aa99413f0bee98cf61fecdc694e))
+* **ignore:** new git files ([bd79e6c](https://github.com/HigorAlves/dontspend-money/commit/bd79e6cf4ce38a3e47c389b1c96cca300a40ede6))
+* **lint:** fix absolute imports ([8155374](https://github.com/HigorAlves/dontspend-money/commit/81553747e418293b5476143058071b7e2ebf1221))
+* **spelling:** new spelling corrections ([5221365](https://github.com/HigorAlves/dontspend-money/commit/52213653017d43d35cb278e3a4f0f7e360829aad))
+* **user:** private routes ([c3eb583](https://github.com/HigorAlves/dontspend-money/commit/c3eb583875bf3b452e06a049613f4dea4daebe4c))
+* **user:** verify if user exists ([454fcde](https://github.com/HigorAlves/dontspend-money/commit/454fcde7ade1575ba50311a3135a18606f8cce69))
+
 ### [0.1.1](https://github.com/HigorAlves/dontspend-money/compare/v0.1.0...v0.1.1) (2020-11-11)
 
 
