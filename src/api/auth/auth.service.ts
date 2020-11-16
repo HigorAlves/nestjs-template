@@ -17,7 +17,7 @@ export class AuthService {
     email: string,
     plainPassword: string
   ): Promise<{ success: boolean; data?: UserEntity }> {
-    const user = await this.usersService.get(email)
+    const user = await this.usersService.getByEmail(email)
 
     if (user) {
       const isPasswordEqual = bcrypt.compareSync(plainPassword, user.password)
@@ -41,13 +41,13 @@ export class AuthService {
   }
 
   async register(userDTO: CreateUserDto) {
-    const user = await this.usersService.get(userDTO.email)
+    const user = await this.usersService.getByEmail(userDTO.email)
 
     if (!user) {
       const result = await this.usersService.create(userDTO)
       return result
     }
 
-    return { success: true, message: 'This user alredy exists!', error: false }
+    return { success: true, message: 'This user already exists!', error: false }
   }
 }

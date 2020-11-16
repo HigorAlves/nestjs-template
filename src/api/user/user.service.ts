@@ -40,7 +40,7 @@ export class UserService {
     return this.userRepository.deleteUser(id)
   }
 
-  async get(email: string): Promise<UserEntity> {
+  async getByEmail(email: string): Promise<UserEntity> {
     return this.userRepository.get(email)
   }
 

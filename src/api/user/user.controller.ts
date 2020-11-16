@@ -26,8 +26,8 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Get()
-  async get(@Body('id') id: string, @Res() response: Response) {
-    const result = await this.userService.get(id)
+  async get(@Body('email') email: string, @Res() response: Response) {
+    const result = await this.userService.getByEmail(email)
     return response.status(200).send(result)
   }
 
