@@ -11,8 +11,8 @@ export class UserEntity extends BaseModel<UserEntity> implements IUser {
   @Column({ name: 'lastName' })
   lastName: string
 
-  @Column({ name: 'birthdate' })
-  birthdate: { day: number; month: number; year: number }
+  @Column({ name: 'birthday' })
+  birthday: { day: number; month: number; year: number }
 
   @Column({ name: 'email' })
   email: string

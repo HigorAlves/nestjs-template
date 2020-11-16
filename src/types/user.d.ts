@@ -4,7 +4,7 @@ export type IUser = {
   lastName: string
   gender: boolean
   image: string
-  birthdate: {
+  birthday: {
     day: number
     month: number
     year: number

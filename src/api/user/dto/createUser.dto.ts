@@ -17,7 +17,7 @@ export class CreateUserDto implements IUser {
   password: string
 
   @IsNotEmpty()
-  birthdate: { day: number; month: number; year: number }
+  birthday: { day: number; month: number; year: number }
 
   @IsNotEmpty()
   @IsString()

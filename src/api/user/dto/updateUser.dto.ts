@@ -13,7 +13,7 @@ export class UpdateUserDto implements Omit<IUser, 'role'> {
   email: string
 
   @IsNotEmpty()
-  birthdate: { day: number; month: number; year: number }
+  birthday: { day: number; month: number; year: number }
 
   @IsNotEmpty()
   @IsString()

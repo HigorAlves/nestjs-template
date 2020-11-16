@@ -2,13 +2,16 @@ import { Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import * as bcrypt from 'bcrypt'
 
+import { AuthRepository } from './auth.repository'
 import { CreateUserDto } from '~/api/user/dto/createUser.dto'
 import { UserService } from '~/api/user/user.service'
 import { UserEntity } from '~/entities/user.entity'
+import { ResponseType } from '~/types/response'
 
 @Injectable()
 export class AuthService {
   constructor(
+    private repository: AuthRepository,
     private usersService: UserService,
     private jwtService: JwtService
   ) {}
@@ -49,5 +52,25 @@ export class AuthService {
     }
 
     return { success: true, message: 'This user already exists!', error: false }
+  }
+
+  async recoveryPassword(email: string): Promise<ResponseType> {
+    await this.repository.createTTL()
+    const alreadyHaveActiveCode = await this.repository.alreadyGenerated(email)
+
+    if (!alreadyHaveActiveCode) {
+      const success = await this.repository.createRecoveryCode(email)
+      return {
+        success,
+        error: false,
+        message: ''
+      }
+    } else {
+      return {
+        success: true,
+        error: false,
+        message: 'There is already a code generated for this email'
+      }
+    }
   }
 }

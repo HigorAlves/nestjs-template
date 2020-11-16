@@ -1,4 +1,5 @@
-import { Controller, Post, Body, UseInterceptors } from '@nestjs/common'
+import { Controller, Post, Body, UseInterceptors, Res } from '@nestjs/common'
+import { Response } from 'express'
 
 import { AuthService } from '~/api/auth/auth.service'
 import { CreateUserDto } from '~/api/user/dto/createUser.dto'
@@ -20,8 +21,12 @@ export class AuthController {
   }
 
   @Post('passwordrecovery')
-  passwordRecovery(@Body('email') email: string) {
-    console.log(email)
+  async passwordRecovery(
+    @Body('email') email: string,
+    @Res() response: Response
+  ) {
+    const result = await this.authService.recoveryPassword(email)
+    return response.status(201).send(result)
   }
 
   @Post('newpassword')
