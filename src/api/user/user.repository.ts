@@ -6,7 +6,10 @@ import {
   Repository,
   UpdateResult
 } from 'typeorm'
-import { DeleteWriteOpResultObject } from 'typeorm/driver/mongodb/typings'
+import {
+  DeleteWriteOpResultObject,
+  UpdateWriteOpResult
+} from 'typeorm/driver/mongodb/typings'
 
 import { CreateUserDto } from '~/api/user/dto/createUser.dto'
 import { UpdateUserDto } from '~/api/user/dto/updateUser.dto'
@@ -57,5 +60,14 @@ export class UserRepository extends Repository<UserEntity> {
     const database = getMongoRepository(UserEntity)
     const data = new UserEntity(user)
     return await database.update(id, data)
+  }
+
+  async updatePassword(email: string, password: string): Promise<any> {
+    const database = getMongoRepository(UserEntity)
+    const user = await database.findOne({ where: { email } })
+    user.password = password
+
+    await database.update(user.id, user)
+    return user
   }
 }

@@ -18,7 +18,7 @@ export class UserService {
 
   async create(
     createUserDTO: CreateUserDto
-  ): Promise<UserEntity | ResponseType> {
+  ): Promise<ResponseType<UserEntity>> {
     const alreadyInUse = await this.userRepository.checkEmailAlreadyInUse(
       createUserDTO.email
     )
@@ -26,13 +26,19 @@ export class UserService {
     if (alreadyInUse) {
       this.logger.error(`${createUserDTO.email} is alredy in use`)
       return {
-        success: false,
+        status: 400,
         message: 'This email is already in use',
-        error: false
+        error: true
       }
     } else {
       createUserDTO.password = bcrypt.hashSync(createUserDTO.password, 10)
-      return this.userRepository.createUser(createUserDTO)
+      const result = await this.userRepository.createUser(createUserDTO)
+      return {
+        status: 201,
+        message: 'User created successfully',
+        error: false,
+        ...result
+      }
     }
   }
 
@@ -47,5 +53,10 @@ export class UserService {
   async update(id: string, user: UpdateUserDto) {
     delete user.email
     return this.userRepository.updateUser(user, id)
+  }
+
+  async updatePassword(email: string, password: string): Promise<UserEntity> {
+    const passwordHash = bcrypt.hashSync(password, 10)
+    return this.userRepository.updatePassword(email, passwordHash)
   }
 }

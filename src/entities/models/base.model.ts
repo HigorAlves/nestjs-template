@@ -17,10 +17,10 @@ export class BaseModel<T> extends BaseEntity {
   @ObjectIdColumn({ name: '_id' })
   id: string
 
-  @CreateDateColumn({ name: 'created_at' })
+  @CreateDateColumn({ name: 'createdAt' })
   createdAt: Date
 
-  @UpdateDateColumn({ name: 'updated_at' })
+  @UpdateDateColumn({ name: 'updatedAt' })
   updatedAt: Date
 
   @Column('boolean', { name: 'inactive', default: false })

@@ -1,5 +1,6 @@
-export type ResponseType = {
-  success: boolean
+export type ResponseType<T = void> = {
+  status: number
+  error: string | boolean
   message: string
-  error: boolean
+  token?: string
 }

@@ -1,4 +1,11 @@
-import { Controller, Post, Body, UseInterceptors, Res } from '@nestjs/common'
+import {
+  Controller,
+  Post,
+  Body,
+  UseInterceptors,
+  Res,
+  Put
+} from '@nestjs/common'
 import { Response } from 'express'
 
 import { AuthService } from '~/api/auth/auth.service'
@@ -11,30 +18,43 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('login')
-  login(@Body() body) {
-    return this.authService.login(body)
+  async login(@Body() body, @Res() response: Response): Promise<Response> {
+    const { status, message, token } = await this.authService.login(body)
+    return response.status(status).send({ message, token })
   }
 
   @Post('register')
-  register(@Body() user: CreateUserDto) {
-    return this.authService.register(user)
+  async register(
+    @Body() user: CreateUserDto,
+    @Res() response: Response
+  ): Promise<Response> {
+    const result = await this.authService.register(user)
+    return response.status(result.status).send(result)
   }
 
-  @Post('passwordrecovery')
+  @Post('recoverpassword')
   async passwordRecovery(
     @Body('email') email: string,
     @Res() response: Response
-  ) {
-    const result = await this.authService.recoveryPassword(email)
-    return response.status(201).send(result)
+  ): Promise<Response> {
+    const { status, message } = await this.authService.recoveryPassword(email)
+    return response.status(status).send(message)
   }
 
   @Post('newpassword')
-  newPassword(@Body() password: string) {
-    console.log(password)
+  async newPassword(
+    @Body() data: { email: string; password: string; code: string },
+    @Res() response: Response
+  ): Promise<Response> {
+    const { status, message, error } = await this.authService.newPassword(
+      data.email,
+      data.password,
+      data.code
+    )
+    return response.status(status).send({ message, error })
   }
 
-  @Post('passwordupdate')
+  @Put('passwordupdate')
   passwordUpdate(@Body() data: { oldPassword: string; newPassword: string }) {
     console.log(data)
   }

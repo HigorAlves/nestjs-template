@@ -32,26 +32,37 @@ export class AuthService {
     return { success: false }
   }
 
-  async login(data: { email: string; password: string }) {
+  async login(data: {
+    email: string
+    password: string
+  }): Promise<ResponseType> {
     const result = await this.validateUser(data.email, data.password)
 
     if (result.success) {
       const payload = { email: result.data.email, role: result.data.role }
-      return { accessToken: this.jwtService.sign(payload) }
+      return {
+        token: this.jwtService.sign(payload),
+        message: 'Successfully logged in',
+        status: 200,
+        error: false
+      }
     }
 
-    return { error: 'Password or Email invalid' }
+    return { message: 'Invalid password or email', error: true, status: 401 }
   }
 
-  async register(userDTO: CreateUserDto) {
+  async register(userDTO: CreateUserDto): Promise<ResponseType> {
     const user = await this.usersService.getByEmail(userDTO.email)
 
     if (!user) {
-      const result = await this.usersService.create(userDTO)
-      return result
+      return await this.usersService.create(userDTO)
     }
 
-    return { success: true, message: 'This user already exists!', error: false }
+    return {
+      status: 400,
+      message: 'This user already exists!',
+      error: false
+    }
   }
 
   async recoveryPassword(email: string): Promise<ResponseType> {
@@ -59,18 +70,55 @@ export class AuthService {
     const alreadyHaveActiveCode = await this.repository.alreadyGenerated(email)
 
     if (!alreadyHaveActiveCode) {
-      const success = await this.repository.createRecoveryCode(email)
+      await this.repository.createRecoveryCode(email)
       return {
-        success,
         error: false,
-        message: ''
+        message: '',
+        status: 200
       }
     } else {
       return {
-        success: true,
+        status: 418,
         error: false,
         message: 'There is already a code generated for this email'
       }
     }
+  }
+
+  async newPassword(
+    email: string,
+    password: string,
+    code: string
+  ): Promise<ResponseType> {
+    const user = await this.usersService.getByEmail(email)
+    const isCodeValid = await this.repository.verifyRecoverToken(code)
+    const responseData = {
+      status: 400,
+      error: true,
+      message: 'Was not possible change this password'
+    }
+
+    if (!user) {
+      responseData.message = 'This user is not listed'
+      return responseData
+    }
+    if (!isCodeValid) {
+      responseData.message = 'This code is no more valid'
+      return responseData
+    }
+
+    const result = await this.usersService.updatePassword(email, password)
+
+    if (result.password) {
+      this.repository.deleteRecoverToken(code)
+
+      return {
+        status: 200,
+        error: false,
+        message: 'Password updated'
+      }
+    }
+
+    return responseData
   }
 }

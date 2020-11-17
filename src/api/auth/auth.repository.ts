@@ -1,5 +1,10 @@
 import { Logger } from '@nestjs/common'
-import { EntityRepository, getMongoRepository, Repository } from 'typeorm'
+import {
+  DeleteResult,
+  EntityRepository,
+  getMongoRepository,
+  Repository
+} from 'typeorm'
 import { v4 as uuid } from 'uuid'
 
 import { RecoveryEntity } from '~/entities/recovery.entity'
@@ -11,8 +16,8 @@ export class AuthRepository extends Repository<RecoveryEntity> {
   async createTTL() {
     const database = getMongoRepository(RecoveryEntity)
     try {
-      await database.createCollectionIndex('created_at', {
-        expireAfterSeconds: 1
+      await database.createCollectionIndex('createdAt', {
+        expireAfterSeconds: 60 * 20
       })
     } catch (error) {
       this.logger.warn(
@@ -32,5 +37,16 @@ export class AuthRepository extends Repository<RecoveryEntity> {
     const recovery = new RecoveryEntity({ email, code })
     recovery.save()
     return true
+  }
+
+  async verifyRecoverToken(code: string): Promise<RecoveryEntity> {
+    const database = getMongoRepository(RecoveryEntity)
+    return await database.findOne({ where: { code } })
+  }
+
+  async deleteRecoverToken(code: string): Promise<DeleteResult> {
+    const database = getMongoRepository(RecoveryEntity)
+    const token = await database.findOne({ where: { code } })
+    return await database.delete(token.id)
   }
 }
