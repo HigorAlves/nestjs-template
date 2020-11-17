@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/HigorAlves/dontspend-money/compare/v0.1.2...v0.2.0) (2020-11-17)
+
+
+### :sparkles: Features
+
+* **auth:** recover password code generation ([176ddc2](https://github.com/HigorAlves/dontspend-money/commit/176ddc2d0916dc99751d1d2ee2eaf9f28446dbb3))
+* **auth:** recover password function ([0203682](https://github.com/HigorAlves/dontspend-money/commit/02036820dee2558944375c100ba2cd0bb70fe362))
+
 ### 0.1.2 (2020-11-16)
 
 
