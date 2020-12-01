@@ -54,6 +54,7 @@
     "@types/mongodb": "^3.5.33",
     "bcrypt": "^5.0.0",
     "class-validator": "^0.12.2",
+    "hbs": "^4.1.1",
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.0",
     "passport": "^0.4.1",

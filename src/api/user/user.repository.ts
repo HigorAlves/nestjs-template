@@ -6,7 +6,6 @@ import {
 import { InjectModel } from '@nestjs/mongoose'
 import { ObjectID } from 'mongodb'
 import { Model } from 'mongoose'
-import { DeleteWriteOpResultObject } from 'typeorm/driver/mongodb/typings'
 
 import { CreateUserDto } from '~/api/user/dto/createUser.dto'
 import { UpdateUserDto } from '~/api/user/dto/updateUser.dto'
@@ -34,7 +33,7 @@ export class UserRepository {
   }
 
   async deleteUser(id: string): Promise<boolean> {
-    const result: DeleteWriteOpResultObject = await this.Database.deleteOne({
+    const result = await this.Database.deleteOne({
       _id: new ObjectID(id)
     })
 
