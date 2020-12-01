@@ -4,13 +4,17 @@ import {
   Body,
   UseInterceptors,
   Res,
-  Put
+  Put,
+  UseGuards,
+  Req
 } from '@nestjs/common'
-import { Response } from 'express'
+import { Request, Response } from 'express'
 
+import { JwtAuthGuard } from './guards/jwt.guard'
 import { AuthService } from '~/api/auth/auth.service'
 import { CreateUserDto } from '~/api/user/dto/createUser.dto'
 import { SentryInterceptor } from '~/interceptors/sentry.interceptor'
+import { jwtPayload } from '~/types/jwtPayload'
 
 @UseInterceptors(SentryInterceptor)
 @Controller('auth')
@@ -54,8 +58,14 @@ export class AuthController {
     return response.status(status).send({ message, error })
   }
 
-  @Put('passwordupdate')
-  passwordUpdate(@Body() data: { oldPassword: string; newPassword: string }) {
+  @UseGuards(JwtAuthGuard)
+  @Put('updatepassword')
+  passwordUpdate(
+    @Body() data: { oldPassword: string; newPassword: string },
+    @Req() req: Request
+  ) {
+    const user = req.user as jwtPayload
     console.log(data)
+    console.log(user)
   }
 }

@@ -1,13 +1,11 @@
 import { IsBoolean, IsNotEmpty, IsString } from 'class-validator'
 
-import { IUser } from '~/types/user'
-
 /*
   Please, use DTO only for incoming payload from controller, and make sure it have been correctly validated
   For other interfaces use ./src/interfaces/yourapp.interface.ts
 */
 
-export class UpdateUserDto implements Omit<IUser, 'role'> {
+export class UpdateUserDto {
   @IsNotEmpty()
   @IsString()
   email: string

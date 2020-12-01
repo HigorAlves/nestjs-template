@@ -18,13 +18,13 @@ import { UpdateUserDto } from '~/api/user/dto/updateUser.dto'
 import { UserService } from '~/api/user/user.service'
 import { jwtPayload } from '~/types/jwtPayload'
 
-@UseGuards(JwtAuthGuard)
 @Controller('user')
 export class UserController {
   private logger: Logger = new Logger('USER_CONTROLLER')
 
   constructor(private userService: UserService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   async get(@Body('email') email: string, @Res() response: Response) {
     const result = await this.userService.getByEmail(email)

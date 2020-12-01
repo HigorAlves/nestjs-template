@@ -2,14 +2,9 @@ export type IUser = {
   id?: string
   firstName: string
   lastName: string
-  gender: boolean
   image: string
-  birthday: {
-    day: number
-    month: number
-    year: number
-  }
   email: string
+  password: string
   locale: {
     currency: 'BRL' | 'USD'
     language: 'Portuguese' | 'English'

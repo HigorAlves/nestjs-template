@@ -1,3 +1,3 @@
-import { UserEntity } from '~/entities/user.entity'
+import { IUser } from './user'
 
-export type jwtPayload = Pick<UserEntity, 'role' | 'email'>
+export type jwtPayload = Pick<IUser, 'role'> & Pick<IUser, 'email'>

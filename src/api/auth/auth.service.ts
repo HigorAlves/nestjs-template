@@ -5,7 +5,7 @@ import * as bcrypt from 'bcrypt'
 import { AuthRepository } from './auth.repository'
 import { CreateUserDto } from '~/api/user/dto/createUser.dto'
 import { UserService } from '~/api/user/user.service'
-import { UserEntity } from '~/entities/user.entity'
+import { UserDocument } from '~/schemas/user.schema'
 import { ResponseType } from '~/types/response'
 
 @Injectable()
@@ -19,13 +19,17 @@ export class AuthService {
   async validateUser(
     email: string,
     plainPassword: string
-  ): Promise<{ success: boolean; data?: UserEntity }> {
+  ): Promise<{ success: boolean; data?: UserDocument }> {
     const user = await this.usersService.getByEmail(email)
 
     if (user) {
-      const isPasswordEqual = bcrypt.compareSync(plainPassword, user.password)
-      if (isPasswordEqual) {
-        return { success: true, data: user }
+      try {
+        const isPasswordEqual = bcrypt.compareSync(plainPassword, user.password)
+        if (isPasswordEqual) {
+          return { success: true, data: user }
+        }
+      } catch (error) {
+        return { success: false }
       }
     }
 
@@ -66,21 +70,20 @@ export class AuthService {
   }
 
   async recoveryPassword(email: string): Promise<ResponseType> {
-    await this.repository.createTTL()
     const alreadyHaveActiveCode = await this.repository.alreadyGenerated(email)
 
     if (!alreadyHaveActiveCode) {
       await this.repository.createRecoveryCode(email)
       return {
         error: false,
-        message: '',
+        message: 'Recovery code created successfully.',
         status: 200
       }
     } else {
       return {
         status: 418,
         error: false,
-        message: 'There is already a code generated for this email'
+        message: 'There is already a code generated for this email.'
       }
     }
   }

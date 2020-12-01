@@ -13,6 +13,7 @@
     "paths": {
       "~/*": ["*"]
     },
-    "incremental": true
+		"incremental": true,
+		"skipLibCheck": true
   }
 }
