@@ -5,6 +5,7 @@ import * as bcrypt from 'bcrypt'
 import { AuthRepository } from './auth.repository'
 import { CreateUserDto } from '~/api/user/dto/createUser.dto'
 import { UserService } from '~/api/user/user.service'
+import { EmailTemplates, sendMail } from '~/lib/mail'
 import { UserDocument } from '~/schemas/user.schema'
 import { ResponseType } from '~/types/response'
 
@@ -75,7 +76,18 @@ export class AuthService {
     const user = await this.usersService.getByEmail(userDTO.email)
 
     if (!user) {
-      return await this.usersService.create(userDTO)
+      const result = await this.usersService.create(userDTO)
+      await sendMail({
+        from: 'higorhaalves@gmail.com',
+        to: userDTO.email,
+        subject: 'Bem vindo a nossa plataforma',
+        dynamic_template_data: {
+          name: `${userDTO.firstName} ${userDTO.lastName}`
+        },
+        templateId: EmailTemplates.WELCOME
+      })
+
+      return result
     }
 
     return {

@@ -826,6 +826,29 @@
     "@angular-devkit/core" "10.2.0"
     "@angular-devkit/schematics" "10.2.0"
 
+"@sendgrid/client@^7.4.0":
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/@sendgrid/client/-/client-7.4.0.tgz#07c26936f88ade43fb845ce00b37d882999c0a04"
+  integrity sha512-KAZlEb1P8sATgBN+7hXgzaRF94nF9KQgDxQ6zUT1BV0kEsNtJQ2cs35sCtWt6AKKJrL0xPI/MsfcAJqom4YQBg==
+  dependencies:
+    "@sendgrid/helpers" "^7.4.0"
+    axios "^0.19.2"
+
+"@sendgrid/helpers@^7.4.0":
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/@sendgrid/helpers/-/helpers-7.4.0.tgz#be98730c89c190c8873e2f25d868a13d26b75b25"
+  integrity sha512-IQI2vemiJB0+X6bEp4HRG+0/wrzR2RDGnB5rwfq1CsPDrUFdJfxbE2zbGx//1GnlNwAtbHyc93ejU1m0KZr86w==
+  dependencies:
+    deepmerge "^4.2.2"
+
+"@sendgrid/mail@^7.4.0":
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/@sendgrid/mail/-/mail-7.4.0.tgz#126de0f0fc7c62d5d609140261fd598b6291fee3"
+  integrity sha512-SAARsfbl50OEJ99LYGKfgrYiV5O6+23aeGJuEBTHHSwRZ6KhD3n1BjPeIejbqgbqYLZJfNLxyU3o5xRdJPp3zg==
+  dependencies:
+    "@sendgrid/client" "^7.4.0"
+    "@sendgrid/helpers" "^7.4.0"
+
 "@sentry/core@5.27.3":
   version "5.27.3"
   resolved "https://registry.yarnpkg.com/@sentry/core/-/core-5.27.3.tgz#d7a175b71596b7eb4b2e8b4cd1858a60d95813bb"
@@ -1801,6 +1824,13 @@ axios@0.21.0:
   dependencies:
     follow-redirects "^1.10.0"
 
+axios@^0.19.2:
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
+  integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
+  dependencies:
+    follow-redirects "1.5.10"
+
 babel-jest@^26.6.3:
   version "26.6.3"
   resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-26.6.3.tgz#d87d25cb0037577a0c89f82e5755c5d293c01056"
@@ -2753,7 +2783,7 @@ debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.9:
   dependencies:
     ms "2.0.0"
 
-debug@3.1.0:
+debug@3.1.0, debug@=3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
   integrity sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
@@ -3646,6 +3676,13 @@ flatted@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.2.tgz#4575b21e2bcee7434aa9be662f4b7b5f9c2b5138"
   integrity sha512-r5wGx7YeOwNWNlCA0wQ86zKyDLMQr+/RB8xy74M4hTphfmjlijTSSXGuH8rnvKZnfT9i+75zmd8jcKdMR4O6jA==
+
+follow-redirects@1.5.10:
+  version "1.5.10"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
+  integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
+  dependencies:
+    debug "=3.1.0"
 
 follow-redirects@^1.10.0:
   version "1.13.0"
