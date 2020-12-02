@@ -10,14 +10,14 @@ import {
 } from '@nestjs/common'
 import { Request, Response } from 'express'
 
-import { Roles } from './decorators/roles.decorator'
+import { LoginDTO } from './dto/login.dto'
+import { NewPasswordDTO } from './dto/new-password.dto'
+import { UpdatePasswordDTO } from './dto/update-password.dto'
 import { JwtAuthGuard } from './guards/jwt.guard'
-import { RolesGuard } from './guards/roles.guard'
 import { AuthService } from '~/api/auth/auth.service'
 import { CreateUserDto } from '~/api/user/dto/createUser.dto'
 import { SentryInterceptor } from '~/interceptors/sentry.interceptor'
 import { jwtPayload } from '~/types/jwtPayload'
-import { Role } from '~/types/role.enum'
 
 @UseInterceptors(SentryInterceptor)
 @Controller('auth')
@@ -25,8 +25,11 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('login')
-  async login(@Body() body, @Res() response: Response): Promise<Response> {
-    const { status, message, token } = await this.authService.login(body)
+  async login(
+    @Body() data: LoginDTO,
+    @Res() response: Response
+  ): Promise<Response> {
+    const { status, message, token } = await this.authService.login(data)
     return response.status(status).send({ message, token })
   }
 
@@ -48,26 +51,20 @@ export class AuthController {
     return response.status(status).send(message)
   }
 
-  @Post('newpassword')
+  @Put('newpassword')
   async newPassword(
-    @Body() data: { email: string; password: string; code: string },
+    @Body() data: NewPasswordDTO,
     @Res() response: Response
   ): Promise<Response> {
-    const { status, message, error } = await this.authService.newPassword(
-      data.email,
-      data.password,
-      data.code
-    )
+    const { status, message, error } = await this.authService.newPassword(data)
     return response.status(status).send({ message, error })
   }
 
   @UseGuards(JwtAuthGuard)
   @Put('updatepassword')
-  passwordUpdate(
-    @Body() data: { oldPassword: string; newPassword: string },
-    @Req() req: Request
-  ) {
+  passwordUpdate(@Body() data: UpdatePasswordDTO, @Req() req: Request) {
     const user = req.user as jwtPayload
+
     console.log(data)
     console.log(user)
   }

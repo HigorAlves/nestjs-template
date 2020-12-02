@@ -98,11 +98,7 @@ export class AuthService {
     }
   }
 
-  async newPassword(
-    email: string,
-    password: string,
-    code: string
-  ): Promise<ResponseType> {
+  async newPassword({ email, password, code }): Promise<ResponseType> {
     const user = await this.usersService.getByEmail(email)
     const isCodeValid = await this.repository.verifyRecoverToken(code)
     const responseData = {
