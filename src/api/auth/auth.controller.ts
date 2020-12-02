@@ -8,22 +8,32 @@ import {
   UseGuards,
   Req
 } from '@nestjs/common'
+import {
+  ApiBearerAuth,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiResponse,
+  ApiTags
+} from '@nestjs/swagger'
 import { Request, Response } from 'express'
 
 import { LoginDTO } from './dto/login.dto'
 import { NewPasswordDTO } from './dto/new-password.dto'
+import { RegisterUserDTO } from './dto/register-user.dto'
 import { UpdatePasswordDTO } from './dto/update-password.dto'
 import { JwtAuthGuard } from './guards/jwt.guard'
 import { AuthService } from '~/api/auth/auth.service'
-import { CreateUserDto } from '~/api/user/dto/createUser.dto'
 import { SentryInterceptor } from '~/interceptors/sentry.interceptor'
 import { jwtPayload } from '~/types/jwtPayload'
 
+@ApiTags('Auth')
 @UseInterceptors(SentryInterceptor)
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @ApiOkResponse({ description: 'User logged in' })
+  @ApiResponse({ status: 403, description: 'User or password wrong.' })
   @Post('login')
   async login(
     @Body() data: LoginDTO,
@@ -33,9 +43,10 @@ export class AuthController {
     return response.status(status).send({ message, token })
   }
 
+  @ApiCreatedResponse()
   @Post('register')
   async register(
-    @Body() user: CreateUserDto,
+    @Body() user: RegisterUserDTO,
     @Res() response: Response
   ): Promise<Response> {
     const result = await this.authService.register(user)
@@ -60,6 +71,7 @@ export class AuthController {
     return response.status(status).send({ message, error })
   }
 
+  @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @Put('updatepassword')
   async passwordUpdate(

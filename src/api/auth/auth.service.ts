@@ -60,6 +60,12 @@ export class AuthService {
         status: 200,
         error: false
       }
+    } else {
+      return {
+        message: 'Email or password wrong.',
+        status: 403,
+        error: false
+      }
     }
 
     return { message: 'Invalid password or email', error: true, status: 401 }
