@@ -43,8 +43,7 @@ export class UserService {
     return this.userRepository.deleteUser(id)
   }
 
-  // @ts-ignore
-  async getByEmail(email: string): any {
+  async getByEmail(email: string): Promise<UserDocument> {
     return this.userRepository.get(email)
   }
 

@@ -53,16 +53,7 @@ export class UserRepository {
   }
 
   async updateUser(user: UpdateUserDto, id: string): Promise<UserDocument> {
-    return await this.Database.updateOne(
-      { id },
-      {
-        // @ts-ignore
-        $push: {
-          ...user
-        }
-      },
-      { upsert: false }
-    ).exec()
+    return await this.Database.findOneAndUpdate({ id }, user).exec()
   }
 
   async updatePassword(email: string, password: string): Promise<any> {
