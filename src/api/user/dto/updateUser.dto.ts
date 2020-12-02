@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger'
 import { IsBoolean, IsNotEmpty, IsString } from 'class-validator'
 
 /*
@@ -6,29 +7,36 @@ import { IsBoolean, IsNotEmpty, IsString } from 'class-validator'
 */
 
 export class UpdateUserDto {
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   email: string
 
+  @ApiProperty()
   @IsNotEmpty()
   birthday: { day: number; month: number; year: number }
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   firstName: string
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsBoolean()
   gender: boolean
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   image: string
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   lastName: string
 
+  @ApiProperty()
   @IsNotEmpty()
   locale: { currency: 'BRL' | 'USD'; language: 'Portuguese' | 'English' }
 }

@@ -10,7 +10,7 @@ import {
   UseGuards,
   Request
 } from '@nestjs/common'
-import { ApiTags } from '@nestjs/swagger'
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
 
 import { JwtAuthGuard } from '~/api/auth/guards/jwt.guard'
@@ -20,6 +20,7 @@ import { UserService } from '~/api/user/user.service'
 import { jwtPayload } from '~/types/jwtPayload'
 
 @ApiTags('User')
+@ApiBearerAuth()
 @Controller('user')
 export class UserController {
   private logger: Logger = new Logger('USER_CONTROLLER')
@@ -43,6 +44,7 @@ export class UserController {
     return response.status(201).send(result)
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete()
   async delete(
     @Body('id') id: string,
@@ -58,6 +60,7 @@ export class UserController {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put()
   async update(
     @Body() user: UpdateUserDto,
