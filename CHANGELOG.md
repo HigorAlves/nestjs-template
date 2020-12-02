@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/HigorAlves/dontspend-money/compare/v0.2.0...v0.3.0) (2020-12-02)
+
+
+### :triangular_flag_on_post: Others
+
+* **database:** new database engine ([6c1450a](https://github.com/HigorAlves/dontspend-money/commit/6c1450a3f082aa24f2d2951ee11d63249c6bc03b))
+* **secutiry:** secutiry for api ([b12b1e0](https://github.com/HigorAlves/dontspend-money/commit/b12b1e09ebd2d47104d1d5073c715302c392d9c0))
+
+
+### :bug: Bug Fixes
+
+* **dto:** new dto files ([9c5f2ef](https://github.com/HigorAlves/dontspend-money/commit/9c5f2ef057fad9b246914edfdece5b4f93a47a0e))
+* **jwt:** verify if user exists to create token ([6d28b9b](https://github.com/HigorAlves/dontspend-money/commit/6d28b9b1e5bcac0e0f798e9d062aa5c06c1f3970))
+
+
+### :sparkles: Features
+
+* **auth:** update password for logged users ([3eae497](https://github.com/HigorAlves/dontspend-money/commit/3eae497c843ca436a0bbf2ba341701bf2bc1e1f9))
+* **role:** role based access ([da91863](https://github.com/HigorAlves/dontspend-money/commit/da918638da34fc05ec6efc4853bbfe75eee0437e))
+* **view:** new view system ([2c51e50](https://github.com/HigorAlves/dontspend-money/commit/2c51e5055ce9eca4ca843b80c0b07678fe4bc7ab))
+
 ## [0.2.0](https://github.com/HigorAlves/dontspend-money/compare/v0.1.2...v0.2.0) (2020-11-17)
 
 
