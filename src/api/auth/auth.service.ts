@@ -36,6 +36,16 @@ export class AuthService {
     return { success: false }
   }
 
+  async checkUseExists(email: string): Promise<boolean> {
+    const user = await this.usersService.getByEmail(email)
+
+    if (user) {
+      return true
+    }
+
+    return false
+  }
+
   async login(data: {
     email: string
     password: string

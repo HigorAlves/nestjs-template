@@ -20,7 +20,6 @@ import { jwtPayload } from '~/types/jwtPayload'
 import { Role } from '~/types/role.enum'
 
 @UseInterceptors(SentryInterceptor)
-@UseGuards(RolesGuard)
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
