@@ -10,13 +10,17 @@ import {
 } from '@nestjs/common'
 import { Request, Response } from 'express'
 
+import { Roles } from './decorators/roles.decorator'
 import { JwtAuthGuard } from './guards/jwt.guard'
+import { RolesGuard } from './guards/roles.guard'
 import { AuthService } from '~/api/auth/auth.service'
 import { CreateUserDto } from '~/api/user/dto/createUser.dto'
 import { SentryInterceptor } from '~/interceptors/sentry.interceptor'
 import { jwtPayload } from '~/types/jwtPayload'
+import { Role } from '~/types/role.enum'
 
 @UseInterceptors(SentryInterceptor)
+@UseGuards(RolesGuard)
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}

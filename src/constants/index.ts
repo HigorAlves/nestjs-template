@@ -13,3 +13,5 @@ export const JWT = {
 export const SENTRY = {
   dsn: process.env.SENTRY_DSN
 }
+
+export const PORT = process.env.PORT || 8080

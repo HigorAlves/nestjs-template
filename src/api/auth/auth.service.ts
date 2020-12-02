@@ -43,7 +43,7 @@ export class AuthService {
     const result = await this.validateUser(data.email, data.password)
 
     if (result.success) {
-      const payload = { email: result.data.email, role: result.data.role }
+      const payload = { email: result.data.email, roles: [result.data.role] }
       return {
         token: this.jwtService.sign(payload),
         message: 'Successfully logged in',

@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import { APP_GUARD } from '@nestjs/core'
 import { MongooseModule } from '@nestjs/mongoose'
 
 import { AppController } from './app.controller'
+import { RolesGuard } from './auth/guards/roles.guard'
 import { AuthModule } from '~/api/auth/auth.module'
 import { UserModule } from '~/api/user/user.module'
 import ENV_CONFIG from '~/config/configuration'

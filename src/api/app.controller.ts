@@ -5,6 +5,7 @@ export class AppController {
   @Get()
   @Render('index')
   root() {
-    return { message: 'Hello world!' }
+    const packageVersion = process.env.npm_package_version
+    return { version: packageVersion }
   }
 }

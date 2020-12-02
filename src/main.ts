@@ -6,10 +6,9 @@ import * as Sentry from '@sentry/node'
 import { join } from 'path'
 
 import { AppModule } from '~/api/app.module'
-import { SENTRY } from '~/constants'
+import { SENTRY, PORT } from '~/constants'
 
 async function bootstrap() {
-  const PORT = process.env.PORT || 8080
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
 
   app.setViewEngine('hbs')
@@ -20,7 +19,7 @@ async function bootstrap() {
   await app.listen(PORT)
 
   Sentry.init({ dsn: SENTRY.dsn })
-  Logger.log(`🚀 Server running on http://localhost:${PORT}`, 'BOOTSTRAP')
+  Logger.log(`🚀 Server running on ${await app.getUrl()}`, 'BOOTSTRAP')
 }
 
 bootstrap()
