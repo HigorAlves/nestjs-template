@@ -62,10 +62,16 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Put('updatepassword')
-  passwordUpdate(@Body() data: UpdatePasswordDTO, @Req() req: Request) {
+  async passwordUpdate(
+    @Body() data: UpdatePasswordDTO,
+    @Req() req: Request,
+    @Res() response: Response
+  ) {
     const user = req.user as jwtPayload
-
-    console.log(data)
-    console.log(user)
+    const dto = { ...user, ...data }
+    const { status, message, error } = await this.authService.updatePassword(
+      dto
+    )
+    return response.status(status).send({ message, error })
   }
 }

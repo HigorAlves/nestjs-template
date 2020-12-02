@@ -130,4 +130,39 @@ export class AuthService {
 
     return responseData
   }
+
+  async updatePassword({
+    email,
+    oldPassword,
+    newPassword
+  }): Promise<ResponseType> {
+    const user = await this.usersService.getByEmail(email)
+
+    if (user) {
+      try {
+        const isPasswordEqual = bcrypt.compareSync(oldPassword, user.password)
+
+        if (isPasswordEqual) {
+          const password = await bcrypt.hashSync(newPassword, 10)
+          const result = await this.usersService.updatePassword(email, password)
+
+          if (result) {
+            return {
+              status: 200,
+              error: false,
+              message: 'Password updated'
+            }
+          } else {
+            return {
+              status: 400,
+              error: true,
+              message: 'Password was not updated'
+            }
+          }
+        }
+      } catch (error) {
+        return { error: error, message: 'Something goes wrong', status: 500 }
+      }
+    }
+  }
 }
