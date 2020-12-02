@@ -29,8 +29,15 @@ export class UserController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  async get(@Body('email') email: string, @Res() response: Response) {
+  async findOne(@Body('email') email: string, @Res() response: Response) {
     const result = await this.userService.getByEmail(email)
+    return response.status(200).send(result)
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/all')
+  async findAll(@Res() response: Response) {
+    const result = await this.userService.findAll()
     return response.status(200).send(result)
   }
 

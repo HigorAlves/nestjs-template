@@ -6,11 +6,20 @@ import { UpdateUserDto } from '~/api/user/dto/updateUser.dto'
 import { UserRepository } from '~/api/user/user.repository'
 import { UserDocument } from '~/schemas/user.schema'
 import { ResponseType } from '~/types/response'
+import { IUser } from '~/types/user'
 
 @Injectable()
 export class UserService {
   private logger: Logger = new Logger('USER_SERVICE')
   constructor(private userRepository: UserRepository) {}
+
+  async getByEmail(email: string): Promise<UserDocument> {
+    return this.userRepository.get(email)
+  }
+
+  async findAll(): Promise<IUser[]> {
+    return this.userRepository.getAll()
+  }
 
   async create(
     createUserDTO: CreateUserDto
@@ -41,10 +50,6 @@ export class UserService {
 
   async delete(id: string): Promise<boolean> {
     return this.userRepository.deleteUser(id)
-  }
-
-  async getByEmail(email: string): Promise<UserDocument> {
-    return this.userRepository.get(email)
   }
 
   async update(id: string, user: UpdateUserDto) {

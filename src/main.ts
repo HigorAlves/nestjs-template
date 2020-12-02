@@ -16,6 +16,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
   const packageVersion = process.env.npm_package_version
 
+  // app.use(csurf())
   app.setViewEngine('hbs')
   app.useStaticAssets(join(__dirname, '..', 'public'))
   app.setBaseViewsDir(join(__dirname, '..', 'views'))
@@ -38,7 +39,6 @@ async function bootstrap() {
       max: 100 // limit each IP to 100 requests per windowMs
     })
   )
-  app.use(csurf())
 
   await app.listen(PORT)
   Logger.log(`🚀 Server running on ${await app.getUrl()}`, 'BOOTSTRAP')

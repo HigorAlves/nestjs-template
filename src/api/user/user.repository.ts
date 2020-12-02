@@ -18,6 +18,14 @@ export class UserRepository {
 
   constructor(@InjectModel('User') private Database: Model<UserDocument>) {}
 
+  async get(email: string): Promise<UserDocument> {
+    return await this.Database.findOne({ email }).exec()
+  }
+
+  async getAll(): Promise<IUser[]> {
+    return await this.Database.find().exec()
+  }
+
   async createUser(createUserDTO: CreateUserDto): Promise<UserDocument> {
     const data: IUser = { ...createUserDTO, role: 'client' }
 
@@ -42,10 +50,6 @@ export class UserRepository {
     }
 
     return true
-  }
-
-  async get(email: string): Promise<UserDocument> {
-    return await this.Database.findOne({ email }).exec()
   }
 
   async checkEmailAlreadyInUse(email: string) {
