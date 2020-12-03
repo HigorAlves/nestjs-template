@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/HigorAlves/dontspend-money/compare/v0.3.0...v0.3.1) (2020-12-03)
+
+
+### :bug: Bug Fixes
+
+* **lint:** user lint ([158ac9a](https://github.com/HigorAlves/dontspend-money/commit/158ac9add4980aecf304b08d82ea1de2e21902cb))
+
+
+### :memo: Docs
+
+* **auth:** auth api docs ([783c95c](https://github.com/HigorAlves/dontspend-money/commit/783c95cdb101a9b0e45d8bfcdbf6cdac2a102b62))
+* **user:** new swagger doc ([994d202](https://github.com/HigorAlves/dontspend-money/commit/994d202799e6206ca0a16f83992090dd283f02bd))
+
+
+### :sparkles: Features
+
+* **mail:** send grid mail system ([36f2fba](https://github.com/HigorAlves/dontspend-money/commit/36f2fba554c6557ff6dd9b67dafa263062e6bdfa))
+* **user:** get all users ([b9e7299](https://github.com/HigorAlves/dontspend-money/commit/b9e729924c3eaa7e991428215c25110cd7872fae))
+
 ## [0.3.0](https://github.com/HigorAlves/dontspend-money/compare/v0.2.0...v0.3.0) (2020-12-02)
 
 
