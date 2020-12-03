@@ -17,3 +17,8 @@ export const SENTRY = {
 export const PORT = process.env.PORT || 8080
 
 export const SENDGRID = process.env.SENDGRID_API_KEY
+
+export const STRIPE_API = process.env.STRIPE_API_KEY
+export const COINBASE_API = process.env.COINBASE_API_KEY
+
+export const API_VERSION = process.env.npm_package_version
