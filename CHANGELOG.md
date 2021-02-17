@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/HigorAlves/nestjs-template/compare/v0.4.0...v0.5.0) (2021-02-17)
+
+
+### :recycle: Code Refactoring
+
+* auth module ([5f82131](https://github.com/HigorAlves/nestjs-template/commit/5f821317bbeb4dfa3f071fe3c605f535918e50f2))
+* user module ([ab08cc9](https://github.com/HigorAlves/nestjs-template/commit/ab08cc9f2163acd5ec9356893c27c8034188563b))
+
 ## 0.4.0 (2021-02-17)
 
 
