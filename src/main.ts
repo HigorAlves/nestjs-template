@@ -28,6 +28,7 @@ async function bootstrap() {
     .addTag('api')
     .build()
   const document = SwaggerModule.createDocument(app, options)
+
   SwaggerModule.setup('api', app, document)
   Sentry.init({ dsn: SENTRY.dsn })
 

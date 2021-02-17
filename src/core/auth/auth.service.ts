@@ -72,7 +72,7 @@ export class AuthService {
     return { message: 'Invalid password or email', error: true, status: 401 }
   }
 
-  async register(userDTO: CreateUserDto): Promise<ResponseType> {
+  async register(userDTO: CreateUserDto): Promise<ResponseType | any> {
     const user = await this.usersService.getByEmail(userDTO.email)
 
     if (!user) {
@@ -97,7 +97,7 @@ export class AuthService {
     }
   }
 
-  async recoveryPassword(email: string): Promise<ResponseType> {
+  async recoveryPassword(email: string): Promise<ResponseType | any> {
     const alreadyHaveActiveCode = await this.repository.alreadyGenerated(email)
 
     if (!alreadyHaveActiveCode) {
@@ -116,7 +116,7 @@ export class AuthService {
     }
   }
 
-  async newPassword({ email, password, code }): Promise<ResponseType> {
+  async newPassword({ email, password, code }): Promise<ResponseType | any> {
     const user = await this.usersService.getByEmail(email)
     const isCodeValid = await this.repository.verifyRecoverToken(code)
     const responseData = {

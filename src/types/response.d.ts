@@ -3,4 +3,5 @@ export type ResponseType<T = void> = {
   error: string | boolean
   message: string
   token?: string
+  data?: T
 }

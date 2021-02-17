@@ -8,12 +8,12 @@ import { IsNotEmpty, IsString } from 'class-validator'
 
 export class LoginDTO {
   @ApiProperty()
-  @IsNotEmpty()
-  @IsString()
+  @IsNotEmpty({ message: 'This field cannot be empty' })
+  @IsString({ message: 'This field needs to be a string' })
   email: string
 
   @ApiProperty()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'This field cannot be empty' })
   @IsString()
   password: string
 }
