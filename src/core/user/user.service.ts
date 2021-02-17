@@ -5,7 +5,6 @@ import { CreateUserDto } from '~/core/user/dto/createUser.dto'
 import { UpdateUserDto } from '~/core/user/dto/updateUser.dto'
 import { UserRepository } from '~/core/user/user.repository'
 import { UserDocument } from '~/schemas/user.schema'
-import { ResponseType } from '~/types/response'
 import { IUser } from '~/types/user'
 
 @Injectable()
@@ -21,9 +20,7 @@ export class UserService {
     return this.userRepository.getAll()
   }
 
-  async create(
-    createUserDTO: CreateUserDto
-  ): Promise<ResponseType<UserDocument>> {
+  async create(createUserDTO: CreateUserDto): Promise<IResponse<UserDocument>> {
     const alreadyInUse = await this.userRepository.checkEmailAlreadyInUse(
       createUserDTO.email
     )

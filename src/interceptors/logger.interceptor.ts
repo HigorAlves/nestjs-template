@@ -25,34 +25,34 @@ export class MyLogger extends Logger {
     this.winston.add(new LogdnaWinston(options))
   }
 
-  log(message: string) {
+  log(message: string, metadata?: unknown) {
     this.logger.setContext(this.context)
     this.logger.log(message)
-    this.winston.info(message, { context: this.context })
+    this.winston.info(message, { context: this.context, metadata })
   }
 
-  warn(message: string) {
+  warn(message: string, metadata?: unknown) {
     this.logger.setContext(this.context)
     this.logger.warn(message)
-    this.winston.warn(message, { context: this.context })
+    this.winston.warn(message, { context: this.context, metadata })
   }
 
-  error(message: string) {
+  error(message: string, metadata?: unknown) {
     this.logger.setContext(this.context)
     this.logger.error(message)
-    this.winston.error(message, { context: this.context })
+    this.winston.error(message, { context: this.context, metadata })
   }
 
-  debug(message: string) {
+  debug(message: string, metadata?: unknown) {
     this.logger.setContext(this.context)
     this.logger.debug(message)
-    this.winston.debug(message, { context: this.context })
+    this.winston.debug(message, { context: this.context, metadata })
   }
 
-  verbose(message: string) {
+  verbose(message: string, metadata?: unknown) {
     this.logger.setContext(this.context)
     this.logger.verbose(message)
-    this.winston.verbose(message, { context: this.context })
+    this.winston.verbose(message, { context: this.context, metadata })
   }
 
   customLog() {
