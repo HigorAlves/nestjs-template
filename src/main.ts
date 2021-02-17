@@ -9,8 +9,8 @@ import * as helmet from 'helmet'
 
 import { join } from 'path'
 
-import { AppModule } from '~/api/app.module'
 import { SENTRY, PORT } from '~/constants'
+import { AppModule } from '~/core/app.module'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)

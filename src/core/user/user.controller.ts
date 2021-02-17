@@ -13,10 +13,9 @@ import {
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
 
-import { JwtAuthGuard } from '~/api/auth/guards/jwt.guard'
-import { CreateUserDto } from '~/api/user/dto/createUser.dto'
-import { UpdateUserDto } from '~/api/user/dto/updateUser.dto'
-import { UserService } from '~/api/user/user.service'
+import { CreateUserDto, UpdateUserDto } from './dto'
+import { UserService } from '~/core/user/user.service'
+import { JwtAuthGuard } from '~/guards'
 import { jwtPayload } from '~/types/jwtPayload'
 
 @ApiTags('User')

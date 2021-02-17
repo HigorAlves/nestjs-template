@@ -1,9 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common'
 import * as bcrypt from 'bcrypt'
 
-import { CreateUserDto } from '~/api/user/dto/createUser.dto'
-import { UpdateUserDto } from '~/api/user/dto/updateUser.dto'
-import { UserRepository } from '~/api/user/user.repository'
+import { CreateUserDto } from '~/core/user/dto/createUser.dto'
+import { UpdateUserDto } from '~/core/user/dto/updateUser.dto'
+import { UserRepository } from '~/core/user/user.repository'
 import { UserDocument } from '~/schemas/user.schema'
 import { ResponseType } from '~/types/response'
 import { IUser } from '~/types/user'

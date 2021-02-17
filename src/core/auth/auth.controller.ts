@@ -17,12 +17,14 @@ import {
 } from '@nestjs/swagger'
 import { Request, Response } from 'express'
 
-import { LoginDTO } from './dto/login.dto'
-import { NewPasswordDTO } from './dto/new-password.dto'
-import { RegisterUserDTO } from './dto/register-user.dto'
-import { UpdatePasswordDTO } from './dto/update-password.dto'
-import { JwtAuthGuard } from './guards/jwt.guard'
-import { AuthService } from '~/api/auth/auth.service'
+import {
+  LoginDTO,
+  NewPasswordDTO,
+  RegisterUserDTO,
+  UpdatePasswordDTO
+} from './dto'
+import { AuthService } from '~/core/auth/auth.service'
+import { JwtAuthGuard } from '~/guards'
 import { SentryInterceptor } from '~/interceptors/sentry.interceptor'
 import { jwtPayload } from '~/types/jwtPayload'
 
