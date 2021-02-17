@@ -5,6 +5,7 @@ export type IUser = {
   image: string
   email: string
   password: string
+
   locale: {
     currency: 'BRL' | 'USD'
     language: 'Portuguese' | 'English'

@@ -24,12 +24,12 @@ export class AuthService {
     this.logger.setContext('Authentication')
   }
 
-  async checkUserPassword(data: ILogin): Promise<boolean> {
-    const user = await this.usersService.getByEmail(data.email)
+  async checkUserPassword(user: ILogin): Promise<boolean> {
+    const { data } = await this.usersService.getByEmail(user.email)
 
     if (user) {
       try {
-        return bcrypt.compareSync(data.password, user.password)
+        return bcrypt.compareSync(user.password, data.password)
       } catch (error) {
         this.logger.error(error)
         return false
@@ -49,12 +49,12 @@ export class AuthService {
     return false
   }
 
-  async login(data: ILogin): Promise<IResponse> {
-    const isValid = await this.checkUserPassword(data)
+  async login(login: ILogin): Promise<IResponse> {
+    const isValid = await this.checkUserPassword(login)
 
     if (isValid) {
-      const { email, role } = await this.usersService.getByEmail(data.email)
-      const payload = { email, roles: [role] }
+      const { data } = await this.usersService.getByEmail(login.email)
+      const payload = { email: data.email, roles: [data.role] }
 
       this.logger.log('New user loggin', { user: data.email })
       return {
@@ -161,13 +161,16 @@ export class AuthService {
     }
   }
 
-  async updatePassword(data: IUpdatePassword): Promise<IResponse> {
+  async updatePassword(user: IUpdatePassword): Promise<IResponse> {
     try {
-      const { password } = await this.usersService.getByEmail(data.email)
-      const isPasswordEqual = bcrypt.compareSync(data.oldPassword, password)
+      const { data } = await this.usersService.getByEmail(user.email)
+      const isPasswordEqual = bcrypt.compareSync(
+        user.oldPassword,
+        data.password
+      )
 
       if (isPasswordEqual) {
-        const password = await bcrypt.hashSync(data.newPassword, 10)
+        const password = await bcrypt.hashSync(user.newPassword, 10)
         const hasChange = await this.usersService.updatePassword(
           data.email,
           password
